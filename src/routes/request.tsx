@@ -4,7 +4,7 @@ import { SiteHeader } from "@/components/home/SiteHeader";
 import { SiteFooter } from "@/components/home/SiteFooter";
 import { services } from "@/components/home/data";
 
-type Search = { q?: string; service?: string; worker?: boolean };
+type Search = { q?: string | undefined; service?: string | undefined; worker?: boolean | undefined };
 
 export const Route = createFileRoute("/request")({
   validateSearch: (s: Record<string, unknown>): Search => ({
