@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as RequestRouteImport } from './routes/request'
+import { Route as RequestServiceRouteImport } from './routes/request-service'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -22,31 +23,40 @@ const RequestRoute = RequestRouteImport.update({
   path: '/request',
   getParentRoute: () => rootRouteImport,
 } as any)
+const RequestServiceRoute = RequestServiceRouteImport.update({
+  id: '/request-service',
+  path: '/request-service',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/request': typeof RequestRoute
+  '/request-service': typeof RequestServiceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/request': typeof RequestRoute
+  '/request-service': typeof RequestServiceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/request': typeof RequestRoute
+  '/request-service': typeof RequestServiceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/request'
+  fullPaths: '/' | '/request' | '/request-service'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/request'
-  id: '__root__' | '/' | '/request'
+  to: '/' | '/request' | '/request-service'
+  id: '__root__' | '/' | '/request' | '/request-service'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   RequestRoute: typeof RequestRoute
+  RequestServiceRoute: typeof RequestServiceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -65,12 +75,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RequestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/request-service': {
+      id: '/request-service'
+      path: '/request-service'
+      fullPath: '/request-service'
+      preLoaderRoute: typeof RequestServiceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   RequestRoute: RequestRoute,
+  RequestServiceRoute: RequestServiceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
