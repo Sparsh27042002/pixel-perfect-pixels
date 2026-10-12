@@ -8,9 +8,9 @@ type Search = { q?: string; service?: string; worker?: boolean };
 
 export const Route = createFileRoute("/request")({
   validateSearch: (s: Record<string, unknown>): Search => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    service: typeof s.service === "string" ? s.service : undefined,
-    worker: s.worker === true || s.worker === "true" ? true : undefined,
+    q: typeof s["q"] === "string" ? s["q"] : undefined,
+    service: typeof s["service"] === "string" ? s["service"] : undefined,
+    worker: s["worker"] === true || s["worker"] === "true" ? true : undefined,
   }),
   head: () => ({
     meta: [
