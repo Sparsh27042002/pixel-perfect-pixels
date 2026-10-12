@@ -28,7 +28,7 @@ export function SiteHeader() {
         </label>
         <form
           className="hidden flex-1 md:flex"
-          onSubmit={(e) => { e.preventDefault(); navigate({ to: "/request", search: { q } }); }}
+          onSubmit={(e) => { e.preventDefault(); navigate({ to: "/request-service", search: { q } }); }}
         >
           <div className="flex w-full items-center gap-2 rounded-full border border-input bg-card px-4 py-2">
             <Search className="h-4 w-4 text-muted-foreground" aria-hidden />

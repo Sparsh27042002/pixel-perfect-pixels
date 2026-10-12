@@ -14,7 +14,7 @@ export function Hero() {
         <h1 className="text-4xl font-extrabold leading-[1.05] text-navy md:text-6xl">Home problems? Find the right person to fix them.</h1>
         <p className="mt-5 max-w-lg text-lg text-muted-foreground">Tell us what's wrong in simple words. FixLocal helps you understand the likely cause, see an idea of the cost, and connect with skilled technicians near you.</p>
         <div className="mt-8 flex flex-wrap gap-3">
-          <Link to="/request" className={cta}>Describe your problem <ArrowRight className="h-5 w-5" /></Link>
+          <Link to="/request-service" className={cta}>Describe your problem <ArrowRight className="h-5 w-5" /></Link>
         </div>
       </div>
       <div className="relative">
@@ -29,7 +29,7 @@ export function ProblemSearch() {
   const navigate = useNavigate();
   return (
     <section className="mx-auto max-w-6xl px-4 py-6">
-      <form onSubmit={(e) => { e.preventDefault(); navigate({ to: "/request", search: { q } }); }}
+      <form onSubmit={(e) => { e.preventDefault(); navigate({ to: "/request-service", search: { q } }); }}
         className="flex flex-col gap-3 rounded-3xl bg-card p-3 shadow-soft sm:flex-row">
         <label className="flex flex-1 items-center gap-3 px-3">
           <Search className="h-5 w-5 shrink-0 text-primary" aria-hidden />
@@ -49,7 +49,7 @@ export function Services() {
       <h2 className="text-3xl font-bold text-navy md:text-4xl">What do you need help with?</h2>
       <div className="mt-8 grid grid-cols-2 gap-4 md:grid-cols-3">
         {services.map(({ slug, name, icon: Icon, hint }) => (
-          <Link key={slug} to="/request" search={{ service: slug }}
+          <Link key={slug} to="/request-service" search={{ service: slug }}
             className="group rounded-3xl border border-border bg-card p-5 shadow-soft transition hover:-translate-y-1 hover:border-primary hover:shadow-lift md:p-7">
             <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-accent text-accent-foreground group-hover:bg-primary group-hover:text-primary-foreground">
               <Icon className="h-6 w-6" aria-hidden />

@@ -1,5 +1,5 @@
 import { ImagePlus, X } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
 export type Photo = { id: string; file: File; url: string };
 
@@ -7,11 +7,6 @@ const MAX_PHOTOS = 5;
 
 export function PhotoPicker({ photos, onChange }: { photos: Photo[]; onChange: (p: Photo[]) => void }) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const latest = useRef(photos);
-  latest.current = photos;
-
-  // Free preview URLs when the page closes.
-  useEffect(() => () => latest.current.forEach((p) => URL.revokeObjectURL(p.url)), []);
 
   function add(files: FileList | null) {
     if (!files) return;
